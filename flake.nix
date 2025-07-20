@@ -16,7 +16,6 @@
     home-manager,
   }: let
     system = "x86_64-linux";
-    user = "devops";
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -26,13 +25,13 @@
       nixos = nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         specialArgs = {
-          inherit user;
+          conf = import ./conf.nix;
         };
         modules = [
           nixos-wsl.nixosModules.default
           home-manager.nixosModules.default
           ./wsl.nix
-          ./home-manager
+          ./home
         ];
       };
     };

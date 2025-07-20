@@ -1,11 +1,11 @@
 {
   pkgs,
-  user,
+  conf,
   ...
 }: {
-  system.stateVersion = "25.05";
+  system.stateVersion = conf.nixos-version;
   wsl.enable = true;
-  wsl.defaultUser = user;
+  wsl.defaultUser = conf.user;
 
   nix = {
     settings = {
@@ -52,7 +52,7 @@
     rootless.enable = true;
   };
 
-  users.users.${user} = {
+  users.users.${conf.user} = {
     isNormalUser = true;
     extraGroups = ["docker"];
   };
@@ -64,5 +64,5 @@
 
   # the way to import other nix files
   # imports = [./shell.nix];
-  # home-manager.users.${user} = import ./home.nix;
+  # home-manager.users.${conf.user} = import ./home.nix;
 }
