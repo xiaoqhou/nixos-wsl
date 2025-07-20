@@ -36,7 +36,7 @@
       # credential config for git-credential-manager
       credential.helper = "manager";
       credential.credentialStore = "cache";
-      credential.cacheOptions = "--timeout 60"; # in seconds
+      credential.cacheOptions = "--timeout 36000"; # timout in seconds
     };
   };
 
