@@ -52,7 +52,6 @@
   };
 
   imports = [
-    ./shell/ohmyzsh.nix
-    # ./shell/fish.nix
+    ./shell
   ];
 }
