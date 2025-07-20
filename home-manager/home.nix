@@ -13,6 +13,8 @@
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
+    git-credential-manager
+    wslu  # wsl utilities
     meslo-lgs-nf
     jetbrains-mono
     eza
@@ -29,10 +31,11 @@
     userName = "xiaoqhou";
     userEmail = "houxq.bj@outlook.com";
     extraConfig = {
-      credential.helper = [
-     #   "${pkgs.git-credential-oauth}/bin/git-credential-oauth"
-	"cache --timeout=21600"
-      ];
+      # configuration for git-credential-manager
+      credential.helper = "manager";
+      credential.msauthFlow = "system";
+      credential.credentialStore = "cache";
+      credential.cacheOptions = "--timeout 60"; # in seconds
     };
   };
 
