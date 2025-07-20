@@ -19,6 +19,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    wslu # wsl utilities
     tree
     git
     curl

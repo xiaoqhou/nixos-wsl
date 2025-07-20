@@ -4,9 +4,9 @@
   user,
   ...
 }: {
-  #programs.zsh.enable = true;
-  programs.fish.enable = true;
-  users.users.${user}.shell = pkgs.fish;
+  programs.zsh.enable = true;
+  #programs.fish.enable = true;
+  users.users.${user}.shell = pkgs.zsh;
   home-manager.extraSpecialArgs = {
     inherit user;
     stateVersion = "25.05";

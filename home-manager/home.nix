@@ -13,16 +13,17 @@
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
-    git-credential-manager
-    wslu  # wsl utilities
     meslo-lgs-nf
     jetbrains-mono
+    lazygit
+    git-credential-manager
     eza
     zellij
   ];
 
   home.shellAliases = {
     ls = "eza --icons=always";
+    lgit = "lazygit";
     z = "zellij";
   };
 
@@ -33,7 +34,6 @@
     extraConfig = {
       # configuration for git-credential-manager
       credential.helper = "manager";
-      credential.msauthFlow = "system";
       credential.credentialStore = "cache";
       credential.cacheOptions = "--timeout 60"; # in seconds
     };
@@ -50,6 +50,7 @@
     ];
   };
 
-  #imports = [./ohmyzsh.nix];
-  imports = [./fish.nix];
+  imports = [./ohmyzsh.nix];
+  #imports = [./fish.nix];
+
 }
