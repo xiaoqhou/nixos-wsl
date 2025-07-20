@@ -60,7 +60,8 @@
     useGlobalPkgs = true;
     useUserPackages = true;
   };
-  #  imports = [./{shell}.nix];
-  #  home-manager.users.${user} = import ./home.nix;
-}
 
+  # the way to import other nix files
+  # imports = [./shell.nix];
+  # home-manager.users.${user} = import ./home.nix;
+}

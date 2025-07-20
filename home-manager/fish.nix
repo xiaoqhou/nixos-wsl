@@ -3,7 +3,6 @@
   user,
   ...
 }: {
-
   programs.fish = {
     enable = true;
     # FIXME: run 'scoop install win32yank' on Windows, then add this line with your Windows username to the bottom of interactiveShellInit
@@ -49,4 +48,3 @@
     ];
   }; # programs.fish end
 }
-

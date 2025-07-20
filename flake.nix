@@ -1,5 +1,5 @@
 {
-  description = "dev nixos in wsl";
+  description = "Local dev environment in nixos with wsl";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
@@ -32,7 +32,7 @@
           nixos-wsl.nixosModules.default
           home-manager.nixosModules.default
           ./wsl.nix
-	  ./home-manager
+          ./home-manager
         ];
       };
     };
@@ -44,4 +44,3 @@
     # add access token here, ie. access-token = [ gitlab.mycompany.com=PAT:<your token> ]
   };
 }
-

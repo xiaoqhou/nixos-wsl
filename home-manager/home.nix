@@ -24,11 +24,11 @@
     z = "zellij";
   };
 
-   programs.git = {
-      enable = true;
-      userName = "xiaoqhou";
-      userEmail = "houxq.bj@outlook.com";
-    };
+  programs.git = {
+    enable = true;
+    userName = "xiaoqhou";
+    userEmail = "houxq.bj@outlook.com";
+  };
 
   programs.fzf.enable = true;
 
@@ -40,9 +40,7 @@
       "--cmd cd"
     ];
   };
-  
+
   #imports = [./ohmyzsh.nix];
   imports = [./fish.nix];
-
 }
-
