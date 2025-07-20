@@ -29,7 +29,10 @@
     userName = "xiaoqhou";
     userEmail = "houxq.bj@outlook.com";
     extraConfig = {
-      credential.helper = "${pkgs.git-credential-oauth}/bin/git-credential-oauth";
+      credential.helper = [
+     #   "${pkgs.git-credential-oauth}/bin/git-credential-oauth"
+	"cache --timeout=21600"
+      ];
     };
   };
 
