@@ -28,6 +28,9 @@
     enable = true;
     userName = "xiaoqhou";
     userEmail = "houxq.bj@outlook.com";
+    extraConfig = {
+      credential.helper = "${pkgs.git-credential-oauth}/bin/git-credential-oauth";
+    };
   };
 
   programs.fzf.enable = true;
