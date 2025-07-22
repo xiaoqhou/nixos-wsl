@@ -4,7 +4,7 @@
   conf,
   ...
 }: {
-  programs.zsh.enable = lib.mkIf (conf.shell == "zsh") true;
+  programs.zsh.enable = true;
   programs.fish.enable = lib.mkIf (conf.shell == "fish") true;
   users.users.${conf.user}.shell = 
     if conf.shell == "zsh" then pkgs.zsh

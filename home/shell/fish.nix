@@ -1,29 +1,15 @@
 {
   pkgs,
-  user,
   ...
 }: {
+  home.packages = [
+  #  pkgs.oh-my-fish
+    pkgs.starship
+  ];
+
   programs.fish = {
     enable = true;
-    # FIXME: run 'scoop install win32yank' on Windows, then add this line with your Windows username to the bottom of interactiveShellInit
-    # fish_add_path --append /mnt/c/Users/<Your Windows Username>/scoop/apps/win32yank/0.1.1
-    interactiveShellInit = ''
-      ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
-
-      ${pkgs.lib.strings.fileContents (pkgs.fetchFromGitHub {
-          owner = "rebelot";
-          repo = "kanagawa.nvim";
-          rev = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92";
-          sha256 = "sha256-f/CUR0vhMJ1sZgztmVTPvmsAgp0kjFov843Mabdzvqo=";
-        }
-        + "/extras/kanagawa.fish")}
-
-      set -U fish_greeting
-    '';
     functions = {
-      refresh = "source $HOME/.config/fish/config.fish";
-      take = ''mkdir -p -- "$1" && cd -- "$1"'';
-      ttake = "cd $(mktemp -d)";
       show_path = "echo $PATH | tr ' ' '\n'";
       posix-source = ''
         for i in (cat $argv)
@@ -32,19 +18,59 @@
         end
       '';
     };
+    interactiveShellInit = ''
+      # set theme to built-in theme Dracula
+      fish_config theme choose Dracula
+    '';
+    # https://github.com/gazorby/awesome-fish
     plugins = [
       {
-        inherit (pkgs.fishPlugins.autopair) src;
         name = "autopair";
+        inherit (pkgs.fishPlugins.autopair) src;
       }
       {
-        inherit (pkgs.fishPlugins.done) src;
-        name = "done";
-      }
-      {
-        inherit (pkgs.fishPlugins.sponge) src;
         name = "sponge";
+        inherit (pkgs.fishPlugins.sponge) src;
+      }
+      {
+        name = "plugin-git";
+        src = pkgs.fishPlugins.plugin-git.src;
+      }
+      { 
+        name = "foreign-env"; # run bash scripts
+        src = pkgs.fishPlugins.foreign-env.src;
+      }
+      { 
+        name = "fzf-fish";
+        src = pkgs.fishPlugins.fzf-fish.src;
+      }
+      /*
+      {
+        name = "pure"; # pure prompt
+	src = pkgs.fishPlugins.pure.src;
+      }
+      {
+        name = "gruvbox";  # gruvbox theme
+	src = pkgs.fishPlugins.gruvbox.src;
+      }
+      */
+      {
+        # display tips about abbr/alias of command 
+        # run __abbr_tips_init if it doesn't work
+        name = "abbreviation-tips";
+        src = pkgs.fetchFromGitHub {
+          owner = "gazorby";
+          repo = "fish-abbreviation-tips";
+          tag = "v0.7.0";
+          sha256 = "sha256-F1t81VliD+v6WEWqj1c1ehFBXzqLyumx5vV46s/FZRU=";
+        };
       }
     ];
   }; # programs.fish end
+
+  programs.starship = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
 }

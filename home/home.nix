@@ -19,12 +19,14 @@
     git-credential-manager
     eza
     zellij
+    vscode
   ];
 
   home.shellAliases = {
     ls = "eza --icons=always";
     lgit = "lazygit";
     z = "zellij";
+    fs = "rg .|fzf --print0"; # search from file, add -e for exact math
   };
 
   programs.git = {

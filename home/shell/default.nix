@@ -8,7 +8,8 @@
     };
 */
     imports = [
-      ./ohmyzsh.nix
+      ./zsh.nix
+      ./fish.nix
     ];
 
 }
