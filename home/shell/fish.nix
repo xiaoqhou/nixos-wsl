@@ -1,9 +1,6 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = [
-  #  pkgs.oh-my-fish
+    #  pkgs.oh-my-fish
     pkgs.starship
   ];
 
@@ -36,26 +33,26 @@
         name = "plugin-git";
         src = pkgs.fishPlugins.plugin-git.src;
       }
-      { 
+      {
         name = "foreign-env"; # run bash scripts
         src = pkgs.fishPlugins.foreign-env.src;
       }
-      { 
+      {
         name = "fzf-fish";
         src = pkgs.fishPlugins.fzf-fish.src;
       }
       /*
-      {
-        name = "pure"; # pure prompt
-	src = pkgs.fishPlugins.pure.src;
-      }
-      {
-        name = "gruvbox";  # gruvbox theme
-	src = pkgs.fishPlugins.gruvbox.src;
-      }
+           {
+             name = "pure"; # pure prompt
+      src = pkgs.fishPlugins.pure.src;
+           }
+           {
+             name = "gruvbox";  # gruvbox theme
+      src = pkgs.fishPlugins.gruvbox.src;
+           }
       */
       {
-        # display tips about abbr/alias of command 
+        # display tips about abbr/alias of command
         # run __abbr_tips_init if it doesn't work
         name = "abbreviation-tips";
         src = pkgs.fetchFromGitHub {
@@ -71,6 +68,8 @@
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
+    settings = {
+      add_newline = false;
+    };
   };
-
 }
