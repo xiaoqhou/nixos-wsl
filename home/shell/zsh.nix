@@ -29,7 +29,7 @@
             source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
           fi
         '')
-      # modify the termianl title(zellij frame title)
+      # modify the termianl title and zellij frame title
       (lib.mkAfter ''
         function terminal_title_precmd() {
         	print -Pn -- '\e]0; %~\a'
@@ -58,7 +58,7 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = ["sudo" "copybuffer" "eza" "aliases" "command-not-found" "copypath"]; # vi-mode
+      plugins = ["sudo" "git" "copybuffer" "eza" "aliases" "command-not-found" "copypath"]; # vi-mode
     };
   }; # programs.zsh end
 }

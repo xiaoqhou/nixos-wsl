@@ -25,6 +25,7 @@
     ls = "eza --icons=always";
     lgit = "lazygit";
     z = "zellij";
+    zrf = "zellij run -f --";
     fs = "rg .|fzf --print0"; # search from file, add -e for exact math
   };
 
@@ -50,7 +51,12 @@
 
   programs.fzf.enable = true;
 
-  programs.direnv.enable = true;
+  programs.direnv = {
+    enable = true;
+    config = {
+      global.hide_env_diff = true;
+    };
+  };
 
   programs.zoxide = {
     enable = true;
@@ -62,6 +68,7 @@
   programs.zellij = {
     enable = true;
     settings = {
+      simplified_ui = true;
       show_startup_tips = false;
       show_release_notes = false;
       theme = "catppuccin-frappe";
