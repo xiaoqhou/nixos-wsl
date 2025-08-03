@@ -21,20 +21,23 @@
       inherit system;
       config.allowUnfree = true;
     };
-    conf = import ../conf.nix;
+    myConfig = import ../conf.nix;
   in {
-    homeConfigurations.${conf.user} = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations.${myConfig.user} = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
       # Specify your home configuration modules here, for example,
       # the path to your home.nix.
-      modules = [./home.nix];
+      modules = [
+        ./home.nix
+        {installFish = myConfig.install-fish;}
+      ];
 
       # Optionally use extraSpecialArgs
       # to pass through arguments to home.nix
       extraSpecialArgs = {
-        user = "${conf.user}";
-        stateVersion = "${conf.nixos-version}";
+        user = "${myConfig.user}";
+        stateVersion = "${myConfig.nixos-version}";
       };
     };
   };

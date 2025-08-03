@@ -1,21 +1,18 @@
 {
   pkgs,
   lib,
-  conf,
+  config,
+  myConfig,
   ...
 }: {
   programs.zsh.enable = true;
-  programs.fish.enable = lib.mkIf (conf.shell == "fish") true;
-  users.users.${conf.user}.shell =
-    if conf.shell == "zsh"
-    then pkgs.zsh
-    else if conf.shell == "fish"
-    then pkgs.fish
-    else pkgs.bash;
+  # programs.fish.enable = lib.mkIf (myConfig.shell == "fish") true;
+  programs.fish.enable = myConfig.install-fish;
+  users.users.${myConfig.user}.shell = pkgs.zsh; # default shell, can be fish if it enabled
 
   home-manager.extraSpecialArgs = {
-    user = "${conf.user}";
-    stateVersion = "${conf.nixos-version}";
+    user = "${myConfig.user}";
+    stateVersion = "${myConfig.nixos-version}";
   };
-  home-manager.users.${conf.user} = ./home.nix;
+  home-manager.users.${myConfig.user} = ./home.nix;
 }

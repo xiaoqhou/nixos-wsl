@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   lib,
   user,
   stateVersion,
@@ -94,6 +95,8 @@
       }; # end keybinds
     }; # end zellij.settings
   }; # end progams.zellij
+
+  #  home.file."/home/${user}/.config/nvim".source = config.lib.file.mkOutOfStoreSymlink ../../dotfiles/nvim;
 
   imports = [
     ./shell

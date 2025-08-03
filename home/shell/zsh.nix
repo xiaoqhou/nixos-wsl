@@ -8,6 +8,12 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     enableCompletion = true;
+    history = {
+      size = 10000;
+      findNoDups = true;
+      saveNoDups = true;
+      ignoreAllDups = true;
+    };
     plugins = [
       {
         name = "powerlevel10k";
@@ -40,11 +46,6 @@
       ''
         # Powerlevel10k Zsh theme, run `p10k configure` to customize prompt.
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-        # Additional history options
-        setopt hist_ignore_all_dups
-        setopt hist_save_no_dups
-        setopt hist_find_no_dups
 
         # Completion styling
         zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'

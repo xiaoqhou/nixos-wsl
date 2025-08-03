@@ -1,11 +1,11 @@
 {
   pkgs,
-  conf,
+  myConfig,
   ...
 }: {
-  system.stateVersion = conf.nixos-version;
+  system.stateVersion = myConfig.nixos-version;
   wsl.enable = true;
-  wsl.defaultUser = conf.user;
+  wsl.defaultUser = myConfig.user;
 
   nix = {
     settings = {
@@ -42,8 +42,9 @@
   environment.shellAliases = {
     l = "ls -lah";
     cat = "bat";
-    vim = "nvim";
+    nrs = "sudo nixos-rebuild switch --flake .";
     hm = "home-manager";
+    hms = "home-manager switch --flake .";
     genpw = "gpg --gen-random --armor 1 10";
   };
 
@@ -52,7 +53,7 @@
     rootless.enable = true;
   };
 
-  users.users.${conf.user} = {
+  users.users.${myConfig.user} = {
     isNormalUser = true;
     extraGroups = ["docker"];
   };
@@ -64,5 +65,5 @@
 
   # the way to import other nix files
   # imports = [./shell.nix];
-  # home-manager.users.${conf.user} = import ./home.nix;
+  # home-manager.users.${myConfig.user} = import ./home.nix;
 }

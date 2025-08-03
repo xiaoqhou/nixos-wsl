@@ -7,7 +7,7 @@
       url = "github:nix-community/NixOS-WSL/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager = { 
+    home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -24,18 +24,20 @@
       inherit system;
       config.allowUnfree = true;
     };
+    myConfig = import ./conf.nix; # custom values from conf.nix
   in {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         specialArgs = {
-          conf = import ./conf.nix;
+          inherit myConfig;
         };
         modules = [
           nixos-wsl.nixosModules.default
           home-manager.nixosModules.default
           ./wsl.nix
           ./home
+          {home-manager.users.${myConfig.user}.installFish = myConfig.install-fish;}
         ];
       };
     };
