@@ -7,6 +7,8 @@
   wsl.enable = true;
   wsl.defaultUser = myConfig.user;
 
+  programs.nix-ld.enable = true;
+
   nix = {
     settings = {
       auto-optimise-store = true;

@@ -1,14 +1,13 @@
 {
   pkgs,
   lib,
-  config,
   myConfig,
   ...
 }: {
-  programs.zsh.enable = true;
-  # programs.fish.enable = lib.mkIf (myConfig.shell == "fish") true;
-  programs.fish.enable = myConfig.install-fish;
-  users.users.${myConfig.user}.shell = pkgs.zsh; # default shell, can be fish if it enabled
+  programs.zsh.enable = builtins.elem "zsh" myConfig.shell.install;
+  # programs.fish.enable = lib.mkIf (myConfig.shell.default == "fish") true;
+  programs.fish.enable = builtins.elem "fish" myConfig.shell.install;
+  users.users.${myConfig.user}.shell = pkgs.${myConfig.shell.default}; # default shell
 
   home-manager.extraSpecialArgs = {
     user = "${myConfig.user}";

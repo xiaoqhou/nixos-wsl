@@ -37,7 +37,7 @@
           home-manager.nixosModules.default
           ./wsl.nix
           ./home
-          {home-manager.users.${myConfig.user}.installFish = myConfig.install-fish;}
+          #{home-manager.users.${myConfig.user}.installFish = myConfig.install-fish;}
         ];
       };
     };

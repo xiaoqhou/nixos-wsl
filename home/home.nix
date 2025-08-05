@@ -20,6 +20,7 @@
     git-credential-oauth
     eza
     vscode
+    devbox
   ];
 
   home.shellAliases = {
@@ -28,6 +29,7 @@
     z = "zellij";
     zrf = "zellij run -f --";
     fs = "rg .|fzf --print0"; # search from file, add -e for exact math
+    vim = "nvim";
   };
 
   programs.git = {
@@ -96,7 +98,8 @@
     }; # end zellij.settings
   }; # end progams.zellij
 
-  #  home.file."/home/${user}/.config/nvim".source = config.lib.file.mkOutOfStoreSymlink ../../dotfiles/nvim;
+  #  link the neovim dotfiles, must use absolute path
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/project/dotfiles/nvim";
 
   imports = [
     ./shell
