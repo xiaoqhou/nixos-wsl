@@ -2,16 +2,14 @@
   pkgs,
   config,
   lib,
-  user,
-  stateVersion,
-  includeDev,
+  myConfig,
   ...
 }: {
-  home.stateVersion = "${stateVersion}";
+  home.stateVersion = myConfig.nixosVersion;
   programs.home-manager.enable = true;
 
-  home.username = user;
-  home.homeDirectory = "/home/${user}";
+  home.username = myConfig.user;
+  home.homeDirectory = "/home/${myConfig.user}";
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
@@ -101,11 +99,11 @@
   }; # end progams.zellij
 
   #  link the neovim dotfiles, must use absolute path
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/project/dotfiles/nvim";
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/nvim";
 
   imports =
     [
       ./shell
     ]
-    ++ (lib.optionals includeDev [./dev.nix]);
+    ++ (lib.optionals myConfig.dev.install [./dev.nix]);
 }

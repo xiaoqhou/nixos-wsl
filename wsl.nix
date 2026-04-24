@@ -3,7 +3,7 @@
   myConfig,
   ...
 }: {
-  system.stateVersion = myConfig.nixos-version;
+  system.stateVersion = myConfig.nixosVersion;
   wsl.enable = true;
   wsl.defaultUser = myConfig.user;
 

@@ -40,7 +40,7 @@
           ./home
           ## use the following to clean home config
           # {home-manager.users.${myConfig.user} = {
-          #   home.stateVersion = myConfig.nixos-version;
+          #   home.stateVersion = myConfig.nixosVersion;
           # };}
         ];
       };

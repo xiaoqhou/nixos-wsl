@@ -1,11 +1,13 @@
 {
   user = "devops";
-  nixos-version = "25.11";
-  # install shell, supported shells: zsh, fish
+  nixosVersion = "25.11";
   shell = {
+    # install shell, supported shells: zsh, fish
     install = ["zsh" "fish"];
     default = "zsh";
   };
-  # weather to include home/dev.nix
-  include-dev = false;
+  dev = {
+    # weather to include home/dev.nix
+    install = false;
+  };
 }

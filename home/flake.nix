@@ -36,11 +36,7 @@
 
       # Optionally use extraSpecialArgs
       # to pass through arguments to home.nix
-      extraSpecialArgs = {
-        user = "${myConfig.user}";
-        stateVersion = "${myConfig.nixos-version}";
-        includeDev = myConfig.include-dev;
-      };
+      extraSpecialArgs = {inherit myConfig;};
     };
   };
 }

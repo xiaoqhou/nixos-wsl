@@ -9,10 +9,6 @@
   programs.fish.enable = builtins.elem "fish" myConfig.shell.install;
   users.users.${myConfig.user}.shell = pkgs.${myConfig.shell.default}; # default shell
 
-  home-manager.extraSpecialArgs = {
-    user = "${myConfig.user}";
-    stateVersion = "${myConfig.nixos-version}";
-    includeDev = myConfig.include-dev;
-  };
+  home-manager.extraSpecialArgs = {inherit myConfig;};
   home-manager.users.${myConfig.user} = ./home.nix;
 }
