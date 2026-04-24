@@ -105,5 +105,5 @@
     [
       ./shell
     ]
-    ++ (lib.optionals myConfig.dev.install [./dev.nix]);
+    ++ builtins.map (x: ./. + "/env/${x}.nix") (myConfig.envs or []);
 }

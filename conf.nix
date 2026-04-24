@@ -6,8 +6,6 @@
     install = ["zsh" "fish"];
     default = "zsh";
   };
-  dev = {
-    # whether to include home/dev.nix
-    install = false;
-  };
+  # intall nix from home/env/<env>.nix file, e.g. "dev"
+  # envs = ["dev"];
 }

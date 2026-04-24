@@ -39,6 +39,7 @@
     neovim
     btop
     home-manager
+    tmux
   ];
 
   environment.shellAliases = {
