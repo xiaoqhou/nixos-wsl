@@ -12,6 +12,7 @@
   home-manager.extraSpecialArgs = {
     user = "${myConfig.user}";
     stateVersion = "${myConfig.nixos-version}";
+    includeDev = myConfig.include-dev;
   };
   home-manager.users.${myConfig.user} = ./home.nix;
 }

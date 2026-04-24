@@ -4,6 +4,7 @@
   lib,
   user,
   stateVersion,
+  includeDev,
   ...
 }: {
   home.stateVersion = "${stateVersion}";
@@ -19,8 +20,8 @@
     lazygit
     git-credential-oauth
     eza
-    vscode
     devbox
+    just
   ];
 
   home.shellAliases = {
@@ -34,9 +35,10 @@
 
   programs.git = {
     enable = true;
-    userName = "xiaoqhou";
-    userEmail = "houxq.bj@outlook.com";
-    extraConfig = {
+    settings = {
+      user.name = "xiaoqhou";
+      user.email = "houxq.bj@outlook.com";
+
       init.defaultBranch = "main";
       /*
       # git-credential-manager
@@ -69,7 +71,7 @@
   };
 
   programs.zellij = {
-    enable = true;
+    enable = false;
     settings = {
       simplified_ui = true;
       show_startup_tips = false;
@@ -101,7 +103,9 @@
   #  link the neovim dotfiles, must use absolute path
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/project/dotfiles/nvim";
 
-  imports = [
-    ./shell
-  ];
+  imports =
+    [
+      ./shell
+    ]
+    ++ (lib.optionals includeDev [./dev.nix]);
 }

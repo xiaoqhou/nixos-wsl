@@ -1,9 +1,10 @@
 {
   user = "devops";
-  nixos-version = "25.05";
-  install-fish = true;
+  nixos-version = "25.11";
+  install-fish = true; # used to demonstrate the config flag
   shell = {
     install = ["zsh" "fish"];
-    default = "zsh";
+    default = "fish";
   };
+  include-dev = false; # weather to include home/dev.nix
 }
