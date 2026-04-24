@@ -12,5 +12,5 @@ in {
     ++ (lib.optionals (builtins.elem "zsh" myConfig.shell.install) [./zsh.nix]);
 
   # import fish directly but install it base on option
-  installFish = myConfig.install-fish;
+  installFish = builtins.elem "fish" myConfig.shell.install;
 }

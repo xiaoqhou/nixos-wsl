@@ -22,6 +22,7 @@
       config.allowUnfree = true;
     };
     myConfig = import ../conf.nix;
+    installFish = builtins.elem "fish" myConfig.shell.install;
   in {
     homeConfigurations.${myConfig.user} = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
@@ -30,7 +31,7 @@
       # the path to your home.nix.
       modules = [
         ./home.nix
-        {installFish = myConfig.install-fish;}
+        {installFish = installFish;}
       ];
 
       # Optionally use extraSpecialArgs

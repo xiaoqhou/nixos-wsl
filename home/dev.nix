@@ -3,10 +3,6 @@
   user,
   ...
 }: {
-  # the following two lines fixed the vscode can't start in nixos-wsl issue
-  # programs.nix-ld.enable = true;
-  # programs.nix-ld.package = pkgs.nix-ld-rs;
-
   home.packages = with pkgs; [
     tenv
     awscli2
@@ -34,18 +30,18 @@
   };
   */
 
+  /*
   home.file = {
     ".terraformrc.template".text = ''
       credentials "gitlab.com" {
         token = "_GITLAB_TOKEN_"
       }
     '';
-    /*
     ".netrc.template".text = ''
       machine github.com
         login pat
         password _GITHUB_TOKEN_
       '';
-    */
   };
+  */
 }
