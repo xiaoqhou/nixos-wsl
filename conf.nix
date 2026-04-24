@@ -7,7 +7,7 @@
     default = "zsh";
   };
   dev = {
-    # weather to include home/dev.nix
+    # whether to include home/dev.nix
     install = false;
   };
 }
