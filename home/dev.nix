@@ -37,14 +37,14 @@
   home.file = {
     ".terraformrc.template".text = ''
       credentials "gitlab.com" {
-        token = "$GITLAB_TOKEN"
+        token = "_GITLAB_TOKEN_"
       }
     '';
     /*
     ".netrc.template".text = ''
       machine github.com
         login pat
-        password $GITHUB_TOKEN
+        password _GITHUB_TOKEN_
       '';
     */
   };
