@@ -9,7 +9,7 @@ This repository configures a NixOS environment specifically for WSL, using:
 - `flake.nix` for the system-wide NixOS configuration
 - `wsl.nix` for WSL-specific system settings
 - `home/flake.nix` and `home/home.nix` for Home Manager user configuration
-- `conf.nix` for reusable local settings like username and NixOS version
+- `my.conf` for reusable local settings like username and NixOS version
 
 The repo also includes a small `justfile` with helper tasks for rebuilding, formatting, and garbage collection.
 
@@ -17,7 +17,7 @@ The repo also includes a small `justfile` with helper tasks for rebuilding, form
 
 ```
 .
-├── conf.nix
+├── my.conf
 ├── flake.nix
 ├── justfile
 ├── LICENSE
@@ -39,7 +39,7 @@ The repo also includes a small `justfile` with helper tasks for rebuilding, form
   - Main flake entry point.
   - Defines NixOS configuration and imports `wsl.nix`, `home/flake.nix`, and the NixOS-WSL module.
 
-- `conf.nix`
+- `my.conf`
   - Local configuration values such as `user`, `nixosVersion`, and shell settings.
   - Imported by both the root flake and Home Manager flake.
 

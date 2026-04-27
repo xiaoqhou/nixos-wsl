@@ -24,7 +24,7 @@
       inherit system;
       config.allowUnfree = true;
     };
-    myConfig = import ./conf.nix; # custom values from conf.nix
+    myConfig = import ./my.conf; # custom values from my.conf
   in {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {

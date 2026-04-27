@@ -21,7 +21,7 @@
       inherit system;
       config.allowUnfree = true;
     };
-    myConfig = import ../conf.nix;
+    myConfig = import ../my.conf;
     installFish = builtins.elem "fish" myConfig.shell.install;
   in {
     homeConfigurations.${myConfig.user} = home-manager.lib.homeManagerConfiguration {
