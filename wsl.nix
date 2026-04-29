@@ -7,6 +7,8 @@
   wsl.enable = true;
   wsl.defaultUser = myConfig.user;
 
+  time.timeZone = myConfig.timeZone;
+
   programs.nix-ld.enable = true;
 
   nix = {
