@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL/main";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,7 +19,8 @@
     nixpkgs,
     nixos-wsl,
     home-manager,
-  }: let
+    ...
+  } @ inputs: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
@@ -30,7 +32,7 @@
       nixos = nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         specialArgs = {
-          inherit myConfig;
+          inherit myConfig inputs;
         };
         modules = [
           nixos-wsl.nixosModules.default
@@ -38,6 +40,7 @@
           ./wsl.nix
           ## run home config using alias hms in home directory
           ./home
+          ./overlays.nix
           ## use the following to clean home config
           # {home-manager.users.${myConfig.user} = {
           #   home.stateVersion = myConfig.nixosVersion;

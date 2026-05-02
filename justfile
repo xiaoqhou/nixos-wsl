@@ -17,3 +17,6 @@ refresh:
 # collect nix garbage
 gc:
   sudo nix-collect-garbage -d
+
+repair:
+  sudo nix-store --verify --check-contents --repair
