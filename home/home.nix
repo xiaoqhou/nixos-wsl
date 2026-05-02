@@ -20,6 +20,7 @@
     eza
     devbox
     just
+    gcc # used by nvim.treesitter
   ];
 
   home.shellAliases = {
@@ -100,7 +101,7 @@
   }; # end progams.zellij
 
   #  link the neovim dotfiles, must use absolute path
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/nvim";
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/astronvim";
 
   imports =
     [
