@@ -100,8 +100,9 @@
     }; # end zellij.settings
   }; # end progams.zellij
 
-  #  link the neovim dotfiles, must use absolute path
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/astronvim";
+  # clone https://github.com/xiaoqhou/dotfiles to local, i.e. ~/.dotfiles
+  # link the neovim dotfiles, must use absolute path
+  # xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/astronvim";
 
   imports =
     [
