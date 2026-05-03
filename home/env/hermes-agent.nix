@@ -11,24 +11,20 @@
       go
       gh
       opencode
-      # dependencies of hermes agent
-      uv
-      ffmpeg
-      playwright # required by agent-browser
-      chromium # required by agent-browser
-      # nodejs_24
+      # hermes agent dependencies
+      uv ffmpeg
+      unstable.agent-browser
+      playwright # agent-browser dependency
+      chromium # playwright dependency
+      nodejs_22
       (python311.withPackages (ps:
         with ps; [
           pip
-          # the following are used by llm-wiki skill
-          pypdf
-          python-docx
+          pypdf # llm-wiki skill
+          python-docx # llm-wiki skill
         ]))
       binutils # include strings
-    ]
-    ++ (with pkgs.unstable; [
-      agent-browser
-    ]);
+    ];
 
   programs.bash = {
     # enable = true;
