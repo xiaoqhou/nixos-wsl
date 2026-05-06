@@ -26,11 +26,9 @@
   home.shellAliases = {
     ls = "eza --icons=always";
     lgit = "lazygit";
-    z = "zellij";
     zrf = "zellij run -f --";
     fs = "rg .|fzf --print0"; # search from file, add -e for exact math
     vim = "nvim";
-    codi = "code-insiders";
   };
 
   programs.git = {

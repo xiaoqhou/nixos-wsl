@@ -16,13 +16,11 @@
     home-manager,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
-    #pkgs = nixpkgs.legacyPackages.${system};
+    myConfig = import ../my.conf;
     pkgs = import nixpkgs {
-      inherit system;
+      system = myConfig.system;
       config.allowUnfree = true;
     };
-    myConfig = import ../my.conf;
     installFish = builtins.elem "fish" myConfig.shell.install;
   in {
     homeConfigurations.${myConfig.user} = home-manager.lib.homeManagerConfiguration {
