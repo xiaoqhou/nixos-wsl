@@ -1,11 +1,14 @@
 # nixos-wsl
 
 NixOS setup for Windows Subsystem for Linux (WSL) using Nix flakes and Home Manager.
+
 The nixos-wsl configuration and home user configuration can be built separately.
 
 ## Hermes Agent Support
 
-This repository supports setting up a development environment for [Hermes Agent](https://github.com/nousresearch/hermes-agent), an AI-powered coding assistant. The `home/env/hermes-agent.nix` module provides all necessary packages and configurations for running Hermes Agent in your WSL environment.
+This repository supports setting up a development environment for [Hermes Agent](https://github.com/nousresearch/hermes-agent), an AI-powered coding assistant. 
+
+The `home/env/hermes-agent.nix` module provides all necessary packages and configurations for running Hermes Agent in your WSL environment.
 
 ## Overview
 
@@ -107,10 +110,12 @@ To set up the Hermes Agent environment:
 
 2. **Apply the Home Manager configuration**:
    - Run `just refresh` or `home-manager switch --flake home/`
+
 This will install all necessary packages for Hermes Agent, including Python dependencies, Node.js, Chromium, and other required tools.
 
 3. **Install Hermes agent**:
    - Run `curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash`
+   
 Check installation guide from https://github.com/nousresearch/hermes-agent.
 
 ## Notes
