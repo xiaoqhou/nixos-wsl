@@ -1,6 +1,11 @@
 # nixos-wsl
 
 NixOS setup for Windows Subsystem for Linux (WSL) using Nix flakes and Home Manager.
+The nixos-wsl configuration and home user configuration can be built separately.
+
+## Hermes Agent Support
+
+This repository supports setting up a development environment for [Hermes Agent](https://github.com/nousresearch/hermes-agent), an AI-powered coding assistant. The `home/env/hermes-agent.nix` module provides all necessary packages and configurations for running Hermes Agent in your WSL environment.
 
 ## Overview
 
@@ -21,12 +26,14 @@ The repo also includes a small `justfile` with helper tasks for rebuilding, form
 ├── flake.nix
 ├── justfile
 ├── LICENSE
+├── overlays.nix
 ├── README.md
 ├── wsl.nix
 └── home
     ├── default.nix
     ├── env
-    │   └── dev.nix
+    │   ├── dev.nix
+    │   └── hermes-agent.nix
     ├── flake.nix
     ├── home.nix
     └── shell
@@ -43,6 +50,9 @@ The repo also includes a small `justfile` with helper tasks for rebuilding, form
   - Local configuration values such as `user`, `nixosVersion`, and shell settings.
   - Imported by both the root flake and Home Manager flake.
 
+- `overlays.nix`
+  - Defines Nixpkgs overlays to add packages from unstable channels.
+
 - `wsl.nix`
   - WSL-specific system configuration.
   - Enables WSL integration, default user, Docker rootless mode, Nix settings, and common packages.
@@ -56,6 +66,8 @@ The repo also includes a small `justfile` with helper tasks for rebuilding, form
     - Optional top-level configuration import for the home environment.
   - `env/`
     - Environment-specific package sets and configuration definitions.
+    - `dev.nix`: Development tools and configurations.
+    - `hermes-agent.nix`: Packages for Hermes agent setup.
   - `shell/`
     - Shell-specific configuration for `zsh` and `fish`.
 
@@ -80,16 +92,29 @@ From the repository root, run either of these commands:
 
 This applies the Home Manager configuration defined in `home/flake.nix` and `home/home.nix`.
 
-## Additional useful commands
+## Hermes Agent Environment Setup
 
-- `just fmt`
-  - Formats all `.nix` files in the repository using `nix fmt`.
+To set up the Hermes Agent environment:
 
-- `just gc`
-  - Runs `sudo nix-collect-garbage -d` to delete unused Nix generations and reclaim disk space.
+1. **Modify `my.conf`** to enable the hermes-agent environment:
+   ```nix
+   {
+     ...
+     envs = ["hermes-agent"];
+     ...
+   }
+   ```
+
+2. **Apply the Home Manager configuration**:
+   - Run `just refresh` or `home-manager switch --flake home/`
+This will install all necessary packages for Hermes Agent, including Python dependencies, Node.js, Chromium, and other required tools.
+
+3. **Install Hermes agent**:
+   - Run `curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash`
+Check installation guide from https://github.com/nousresearch/hermes-agent.
 
 ## Notes
 
 - The `wsl.nix` configuration enables `wsl.enable = true` and configures the default WSL user.
 - The `home/flake.nix` flake uses `home-manager` and imports the home configuration from `home/home.nix`.
-- Local settings in `conf.nix` can be customized for the username, shell choices, and NixOS version.
+- Local settings in `my.conf` can be customized for the username, shell choices, and NixOS version.
