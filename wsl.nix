@@ -38,7 +38,7 @@
     gnupg
     ripgrep
     fd
-    neovim
+    vim
     btop
     home-manager
     tmux
